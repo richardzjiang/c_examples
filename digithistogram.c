@@ -1,14 +1,15 @@
 #include <stdio.h>
 
 /* Exercise 1-14, but only for numbers */
+/* epic C program by Richard Jiang */
 main()
 {
-	int c, i, nwhite, nother, maxn;
+	int c, i, tmp, nwhite, nother, maxn;
 	int ndigit[10];
 	char maxd;	//ascii code of the digit that has the most
 
 	nwhite = nother = 0;
-	for (i = 0; i < 10; ++i)	//makes every element of the array start at 0
+	for (i = 0; i <= 9; ++i)	//makes every element of the array start at 0
 		ndigit[i] = 0;
 
 	while ((c = getchar())!= EOF)
@@ -30,6 +31,25 @@ main()
 			maxn = ndigit[i];
 			maxd = i + '0';	// for example, if i=2 (when it is looking at how many times the number 2 occurs), then i+'0' is the ascii code for two
 		}
-	printf("DEBUG: maxn=%d\n", maxn);
-	printf("DEBUG: maxd=%c\n", maxd);
+	// printf("DEBUG: maxn=%d\n", maxn);
+	// printf("DEBUG: maxd=%c\n", maxd);
+	
+	nwhite = maxn - nwhite;
+	nother = maxn - nother;
+	for (i = 0; i <= 9; ++i)
+		ndigit[i] = maxn - ndigit[i];
+	
+	printf("\n");	// purely for aesthetic purposes
+	for (i = maxn; i > 0; --i)	{	// this next chunk generates the visual histogram
+		for (tmp = 0; tmp <= 9; ++tmp)	{
+			if (ndigit[tmp] > 0)
+				printf("    ");
+			else if (ndigit[tmp] <= 0)
+				printf("  ==");
+			--ndigit[tmp];
+		}
+		printf("\n");
+	}
+	printf("________________________________________\n");
+	printf("  0   1   2   3   4   5   6   7   8   9 \n\n");
 }
