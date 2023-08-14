@@ -17,7 +17,7 @@ main()
 
 	while ((type = getop(s)) != EOF)	{
 		switch (type)	{
-			case NUMBER:
+		case NUMBER:
 			push(atof(s));
 			break;
 		case '+':
@@ -89,7 +89,7 @@ int getop(char s[])
 	if (!isdigit(c) && c != '.')
 		return c;	/* not a number */
 	i = 0;
-	if (isdigit(c))	/* collect interger part */
+	if (isdigit(c))	/* collect integer part */
 		while (isdigit(s[++i] = c = getch()))
 			;
 	if (c == '.')	/* collect fraction part */
